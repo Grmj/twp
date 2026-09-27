@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +6,17 @@
 
 <title>TWP Nutrition</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap');
+<style>
 
 :root {
     --black: #050505;
-    --red: #e10600;
+    --red: #e30613;
     --white: #ffffff;
-    --grey: #111111;
-    --light-grey: #eeeeee;
+    --grey: #f2f2f2;
 }
 
 * {
@@ -30,99 +30,118 @@ html {
 }
 
 body {
-    background: var(--white);
-    color: var(--black);
     font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #000;
     overflow-x: hidden;
 }
 
-/* =========================
+/* ==================================================
    NAVIGATION
-========================= */
+================================================== */
 
-.navbar {
+.nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 75px;
-    padding: 0 5%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
 
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
+    padding: 0 5%;
 
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    z-index: 9999;
+
+    mix-blend-mode: difference;
 }
 
-.logo img {
-    width: 125px;
-    display: block;
+.nav img {
+    width: 120px;
+    filter: brightness(0) invert(1);
 }
 
 .nav-links {
     display: flex;
-    gap: 35px;
+    gap: 30px;
     list-style: none;
 }
 
 .nav-links a {
+    color: white;
     text-decoration: none;
-    color: #000;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.nav-links a:hover {
+/* ==================================================
+   GENERAL
+================================================== */
+
+h1,
+h2,
+h3 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.red {
     color: var(--red);
 }
 
-.menu-button {
-    display: none;
-    font-size: 25px;
-    cursor: pointer;
+.scroll-section {
+    position: relative;
+    height: 200vh;
 }
 
-/* =========================
+.sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================================================
    HERO
-========================= */
+================================================== */
 
 .hero {
-    min-height: 100vh;
-    background: var(--white);
+    height: 100vh;
+    background: white;
+
+    position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    position: relative;
-    padding: 100px 5% 60px;
     overflow: hidden;
 }
 
 .hero-content {
     width: 100%;
-    max-width: 1400px;
-    margin: auto;
     text-align: center;
 }
 
 .hero-logo {
-    width: 190px;
-    margin: 0 auto 35px;
+    width: 180px;
+    margin-bottom: 25px;
 }
 
 .hero-title {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(65px, 12vw, 170px);
-    line-height: .85;
-    text-transform: uppercase;
-    letter-spacing: -3px;
+    font-size: clamp(70px, 13vw, 180px);
+    line-height: .78;
+    letter-spacing: -5px;
 }
 
 .hero-title span {
@@ -130,602 +149,766 @@ body {
 }
 
 .hero-products {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    align-items: end;
-    max-width: 900px;
-    margin: 30px auto 0;
-}
+    position: absolute;
 
-.hero-product {
+    bottom: -5px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(900px, 90%);
+
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 
+.hero-product {
+    width: 30%;
+}
+
 .hero-product img {
-    max-width: 100%;
-    max-height: 340px;
-    object-fit: contain;
-    transition: transform .5s ease;
-}
-
-.hero-product:hover img {
-    transform: translateY(-12px);
-}
-
-.hero-product.whey img {
-    max-height: 460px;
-}
-
-.hero-label {
-    font-family: 'Anton', sans-serif;
-    font-size: 20px;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--red);
-}
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
-.product-section {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.section-inner {
     width: 100%;
-    max-width: 1450px;
-    margin: auto;
-    padding: 100px 6%;
+    max-height: 320px;
+    object-fit: contain;
 }
 
-/* =========================
-   SECTION 1 - WHEY
-========================= */
-
-.whey-section {
-    background: var(--black);
-    color: var(--white);
+.hero-product.main {
+    width: 40%;
 }
 
-.whey-section .section-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 60px;
+.hero-product.main img {
+    max-height: 440px;
 }
 
-.section-number {
-    color: var(--red);
-    font-size: 13px;
-    font-weight: 900;
+.scroll-indicator {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 10px;
+    font-weight: 800;
     letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
 }
 
-.section-title {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(60px, 9vw, 130px);
-    text-transform: uppercase;
-    line-height: .85;
-    letter-spacing: -2px;
+/* ==================================================
+   PRODUCT SCROLL SYSTEM
+================================================== */
+
+.product-scroll {
+    height: 250vh;
 }
 
-.section-title span {
-    color: var(--red);
+.product-sticky {
+    background: var(--black);
 }
 
-.section-description {
-    max-width: 500px;
-    margin-top: 30px;
-    line-height: 1.7;
-    font-size: 16px;
-    color: #cfcfcf;
-}
-
-.shop-button {
-    display: inline-block;
-    margin-top: 35px;
-    padding: 17px 32px;
+.product-sticky.red-bg {
     background: var(--red);
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: .3s;
 }
 
-.shop-button:hover {
+.product-sticky.white-bg {
     background: white;
-    color: black;
 }
 
-.product-image {
-    height: 650px;
+/* ==================================================
+   PRODUCT CONTENT
+================================================== */
+
+.product-content {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    max-width: 1500px;
+    margin: auto;
+}
+
+/* Product */
+
+.scroll-product {
+    position: absolute;
+
+    width: min(40vw, 600px);
+    height: 70vh;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.8);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    z-index: 2;
+
+    transition:
+        transform .1s linear,
+        opacity .1s linear;
 }
 
-.product-image img {
-    max-width: 90%;
-    max-height: 100%;
+.scroll-product img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    transition: transform .6s ease;
+
+    filter: drop-shadow(
+        0 30px 30px rgba(0,0,0,.3)
+    );
 }
 
-.product-image img:hover {
-    transform: scale(1.04);
+/* Text */
+
+.product-text {
+    position: absolute;
+
+    left: 8%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 4;
+
+    width: 40%;
+
+    opacity: 0;
 }
 
-/* =========================
-   RED SECTIONS
-========================= */
-
-.red-section {
-    background: var(--red);
-    color: var(--white);
+.product-text.right {
+    left: auto;
+    right: 8%;
 }
 
-.red-section .section-number {
+.product-number {
+    color: var(--red);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.red-bg .product-number {
     color: black;
 }
 
-.red-section .shop-button {
+.product-text h2 {
+    font-size: clamp(70px, 10vw, 150px);
+
+    line-height: .78;
+
+    letter-spacing: -3px;
+}
+
+.product-text p {
+    margin-top: 30px;
+
+    max-width: 450px;
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    color: #aaa;
+}
+
+.red-bg .product-text p {
+    color: white;
+}
+
+.white-bg .product-text p {
+    color: #444;
+}
+
+.product-button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 16px 30px;
+
+    background: var(--red);
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.red-bg .product-button {
     background: black;
 }
 
-.red-section .shop-button:hover {
-    background: white;
-    color: black;
+.white-bg .product-button {
+    background: black;
 }
 
-/* =========================
+/* ==================================================
+   WHEY
+================================================== */
+
+#whey .scroll-product {
+    transform:
+        translate(-50%, -50%)
+        scale(.7);
+}
+
+#whey.active .scroll-product {
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+/* ==================================================
    KICK START
-========================= */
+================================================== */
 
-.kickstart-section .section-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 50px;
+#kickstart .product-sticky {
+    background: var(--red);
 }
 
-.kickstart-section .product-image {
-    order: 2;
+#kickstart .scroll-product {
+    left: 60%;
 }
 
-.kickstart-section .section-copy {
-    order: 1;
-}
-
-/* =========================
-   ENDURE
-========================= */
-
-.endure-section {
-    background: var(--black);
+#kickstart .product-text {
     color: white;
 }
 
-.endure-section .section-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-
-/* =========================
-   LFT
-========================= */
-
-.lft-section {
-    background: var(--light-grey);
+#kickstart .product-text .product-number {
     color: black;
 }
 
-.lft-section .section-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+/* ==================================================
+   ENDURE
+================================================== */
+
+#endure .product-sticky {
+    background: black;
 }
 
-.lft-section .section-title span {
+#endure .scroll-product {
+    left: 40%;
+}
+
+#endure .product-text {
+    left: auto;
+    right: 7%;
+}
+
+/* ==================================================
+   LFT
+================================================== */
+
+#lft .product-sticky {
+    background: white;
+}
+
+#lft .scroll-product {
+    right: 5%;
+    left: auto;
+
+    transform:
+        translate(0, -50%)
+        scale(.8);
+}
+
+#lft .product-text {
+    color: black;
+}
+
+/* ==================================================
+   RAWS
+================================================== */
+
+.raws {
+    height: 180vh;
+}
+
+.raws-sticky {
+    background: black;
+    color: white;
+
+    display: block;
+
+    padding: 10vh 5%;
+}
+
+.raws-heading {
+    text-align: center;
+
+    opacity: 0;
+    transform: translateY(80px);
+}
+
+.raws-heading h2 {
+    font-size: clamp(80px, 13vw, 180px);
+    line-height: .75;
+}
+
+.raws-heading span {
     color: var(--red);
 }
 
-/* =========================
-   RAWS
-========================= */
-
-.raws-section {
-    background: var(--black);
-    color: white;
-}
-
-.raws-section .section-inner {
-    text-align: center;
-}
-
-.raws-section .section-title {
-    margin-bottom: 60px;
-}
-
 .raws-grid {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 8vh auto 0;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 20px;
 }
 
 .raw-card {
-    min-height: 420px;
-    background: #151515;
+    height: 430px;
+
     position: relative;
+
+    background: #111;
+
     overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(100px);
 }
 
 .raw-card img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     transition: transform .5s ease;
 }
 
 .raw-card:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
-.raw-card-overlay {
+.raw-card-title {
     position: absolute;
+
     bottom: 0;
     left: 0;
+
     width: 100%;
-    padding: 30px;
-    background: linear-gradient(
-        transparent,
-        rgba(0,0,0,.9)
-    );
-    text-align: left;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.9)
+        );
+
+    font-family: 'Anton';
+
+    font-size: 30px;
 }
 
-.raw-card h3 {
-    font-family: 'Anton', sans-serif;
-    font-size: 35px;
-    text-transform: uppercase;
-}
-
-/* =========================
+/* ==================================================
    FULL RANGE
-========================= */
+================================================== */
 
-.full-range {
-    background: var(--red);
-    color: white;
+.range {
     min-height: 100vh;
-    padding: 120px 5%;
+
+    background: var(--red);
+
+    color: white;
+
+    padding: 100px 5%;
+
+    overflow: hidden;
 }
 
-.full-range-header {
+.range-heading {
     text-align: center;
-    margin-bottom: 70px;
 }
 
-.full-range-title {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(65px, 11vw, 160px);
-    line-height: .8;
-    text-transform: uppercase;
+.range-heading h2 {
+    font-size: clamp(80px, 13vw, 180px);
+    line-height: .75;
 }
 
-.range-scroll {
+.range-heading span {
+    color: black;
+}
+
+.range-track {
     display: flex;
+
     gap: 25px;
+
     overflow-x: auto;
-    padding: 20px 0 40px;
+
+    margin-top: 80px;
+
+    padding-bottom: 30px;
 
     scrollbar-width: none;
+
+    cursor: grab;
 }
 
-.range-scroll::-webkit-scrollbar {
+.range-track::-webkit-scrollbar {
     display: none;
 }
 
 .range-card {
     flex: 0 0 280px;
-    height: 440px;
+
+    height: 450px;
+
     background: white;
-    color: black;
+
     position: relative;
+
     overflow: hidden;
 }
 
 .range-card img {
     width: 100%;
     height: 100%;
+
     object-fit: contain;
-    transition: .4s;
+
+    transition: transform .5s ease;
 }
 
 .range-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
-.range-card-title {
+.range-name {
     position: absolute;
+
     bottom: 0;
     left: 0;
+
     width: 100%;
+
     padding: 20px;
 
-    background: rgba(255,255,255,.95);
+    background: white;
 
-    font-family: 'Anton', sans-serif;
-    font-size: 25px;
-    text-transform: uppercase;
+    color: black;
+
+    font-family: 'Anton';
+
+    font-size: 28px;
 }
 
-/* =========================
+/* ==================================================
    SOCIAL
-========================= */
+================================================== */
 
-.social-section {
-    background: var(--white);
-    color: black;
+.social {
+    min-height: 100vh;
+
+    background: white;
+
     padding: 120px 5%;
 }
 
-.social-header {
+.social-heading {
     text-align: center;
-    margin-bottom: 60px;
 }
 
-.social-title {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(70px, 11vw, 160px);
-    line-height: .8;
-    text-transform: uppercase;
+.social-heading h2 {
+    font-size: clamp(80px, 13vw, 180px);
+    line-height: .75;
 }
 
-.social-title span {
+.social-heading span {
     color: var(--red);
 }
 
 .social-grid {
     max-width: 1100px;
-    margin: auto;
+
+    margin: 70px auto 0;
 
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
 }
 
 .social-card {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
+
     overflow: hidden;
 }
 
 .social-card img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    transition: .5s;
+
+    transition: transform .5s;
 }
 
 .social-card:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
 .social-button {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+
     margin-top: 50px;
 }
 
-.instagram-button {
-    display: inline-block;
-    padding: 17px 35px;
+.social-button a {
     background: black;
     color: white;
+
+    padding: 17px 30px;
+
     text-decoration: none;
-    font-size: 12px;
+
+    font-size: 11px;
     font-weight: 900;
-    text-transform: uppercase;
+
     letter-spacing: 1px;
 }
 
-.instagram-button:hover {
-    background: var(--red);
-}
-
-/* =========================
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 footer {
     background: black;
     color: white;
+
+    padding: 70px 20px;
+
     text-align: center;
-    padding: 60px 20px;
 }
 
 footer img {
     width: 140px;
-    margin-bottom: 25px;
+
+    filter: brightness(0) invert(1);
+
+    margin-bottom: 20px;
 }
 
 footer p {
-    color: #888;
-    font-size: 12px;
+    color: #777;
+
+    font-size: 11px;
 }
 
-/* =========================
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
-@media (max-width: 768px) {
+@media(max-width: 768px) {
 
-    .navbar {
-        height: 65px;
+    .nav {
+        height: 60px;
+
         padding: 0 20px;
     }
 
-    .logo img {
-        width: 105px;
+    .nav img {
+        width: 100px;
     }
 
     .nav-links {
         display: none;
     }
 
-    .menu-button {
-        display: block;
-    }
+    .hero-title {
+        font-size: 70px;
 
-    .hero {
-        min-height: 100svh;
-        padding: 100px 20px 60px;
+        letter-spacing: -2px;
     }
 
     .hero-logo {
-        width: 140px;
-        margin-bottom: 25px;
-    }
-
-    .hero-title {
-        font-size: 72px;
+        width: 130px;
     }
 
     .hero-products {
-        grid-template-columns: .8fr 1.3fr .8fr;
-        margin-top: 35px;
+        width: 100%;
+
+        bottom: 5%;
     }
 
     .hero-product img {
-        max-height: 200px;
+        max-height: 190px;
     }
 
-    .hero-product.whey img {
-        max-height: 290px;
+    .hero-product.main img {
+        max-height: 280px;
     }
 
-    .hero-label {
-        font-size: 13px;
-        bottom: 20px;
+    /*
+       Mobile product sections
+    */
+
+    .product-scroll {
+        height: 190vh;
     }
 
-    .product-section {
-        min-height: auto;
+    .product-content {
+        height: 100%;
     }
 
-    .section-inner {
-        padding: 90px 22px;
+    .scroll-product {
+        width: 75vw;
+        height: 55vh;
+
+        top: 45%;
     }
 
-    .whey-section .section-inner,
-    .kickstart-section .section-inner,
-    .endure-section .section-inner,
-    .lft-section .section-inner {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .product-text {
+        width: 90%;
+
+        left: 5% !important;
+        right: auto !important;
+
+        top: 12%;
+
+        transform: none;
+
+        text-align: left;
     }
 
-    .section-title {
+    .product-text h2 {
         font-size: 70px;
     }
 
-    .section-description {
-        font-size: 14px;
+    .product-text p {
+        font-size: 13px;
+
+        max-width: 90%;
+
+        margin-top: 18px;
+    }
+
+    .product-button {
         margin-top: 20px;
     }
 
-    .product-image {
-        height: 430px;
-        order: 2 !important;
+    #kickstart .scroll-product,
+    #endure .scroll-product {
+        left: 50%;
     }
 
-    .section-copy {
-        order: 1 !important;
+    #lft .scroll-product {
+        left: 50%;
+        right: auto;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.8);
     }
 
-    .shop-button {
-        margin-top: 25px;
+    /*
+       RAWS
+    */
+
+    .raws {
+        height: auto;
     }
 
-    .raws-section .section-inner {
-        padding: 90px 20px;
+    .raws-sticky {
+        height: auto;
+
+        padding: 100px 20px;
+    }
+
+    .raws-heading h2 {
+        font-size: 80px;
     }
 
     .raws-grid {
         grid-template-columns: 1fr;
+
+        margin-top: 60px;
     }
 
     .raw-card {
-        min-height: 430px;
+        height: 400px;
     }
 
-    .full-range {
-        padding: 90px 20px;
+    /*
+       RANGE
+    */
+
+    .range {
+        padding: 100px 20px;
     }
 
-    .full-range-title {
-        font-size: 75px;
+    .range-heading h2 {
+        font-size: 80px;
     }
 
     .range-card {
-        flex: 0 0 260px;
+        flex: 0 0 250px;
+
         height: 390px;
     }
 
-    .social-section {
-        padding: 90px 20px;
+    /*
+       SOCIAL
+    */
+
+    .social {
+        padding: 100px 20px;
     }
 
-    .social-title {
-        font-size: 75px;
+    .social-heading h2 {
+        font-size: 80px;
     }
 
     .social-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+
+        gap: 7px;
     }
 
 }
 
-/* =========================
+/* ==================================================
    SMALL PHONES
-========================= */
+================================================== */
 
-@media (max-width: 390px) {
+@media(max-width: 390px) {
 
     .hero-title {
-        font-size: 62px;
-    }
-
-    .hero-product img {
-        max-height: 165px;
-    }
-
-    .hero-product.whey img {
-        max-height: 240px;
-    }
-
-    .section-title {
         font-size: 60px;
     }
 
-    .full-range-title,
-    .social-title {
-        font-size: 65px;
+    .product-text h2 {
+        font-size: 60px;
+    }
+
+    .scroll-product {
+        width: 80vw;
     }
 
 }
@@ -733,91 +916,211 @@ footer p {
 </style>
 </head>
 
-
 <body>
 
-<!-- =========================
+
+<!-- ==================================================
      NAV
-========================= -->
+================================================== -->
 
-<nav class="navbar">
+<nav class="nav">
 
-    <a href="#home" class="logo">
-        <img src="images/twp-logo.png" alt="TWP Nutrition">
+    <a href="#home">
+        <img src="images/twp-logo.png">
     </a>
 
     <ul class="nav-links">
-        <li><a href="#whey">Whey</a></li>
-        <li><a href="#kickstart">Kick Start</a></li>
-        <li><a href="#endure">Endure</a></li>
-        <li><a href="#lft">LFT</a></li>
-        <li><a href="#raws">Raws</a></li>
-        <li><a href="#range">Full Range</a></li>
-    </ul>
 
-    <div class="menu-button">
-        ☰
-    </div>
+        <li>
+            <a href="#whey">Whey</a>
+        </li>
+
+        <li>
+            <a href="#kickstart">Kick Start</a>
+        </li>
+
+        <li>
+            <a href="#endure">Endure</a>
+        </li>
+
+        <li>
+            <a href="#lft">LFT</a>
+        </li>
+
+        <li>
+            <a href="#raws">Raws</a>
+        </li>
+
+    </ul>
 
 </nav>
 
 
-<!-- =========================
-     1. LANDING
-========================= -->
+<!-- ==================================================
+     HERO
+================================================== -->
 
 <section class="hero" id="home">
 
     <div class="hero-content">
 
         <img
-            src="images/twp-logo.png"
             class="hero-logo"
-            alt="TWP Nutrition"
+            src="images/twp-logo.png"
         >
 
         <h1 class="hero-title">
+
             TRAIN<br>
+
             <span>WITHOUT</span><br>
+
             LIMITS
+
         </h1>
 
+    </div>
 
-        <div class="hero-products">
 
-            <!-- ENDURE LEFT -->
+    <div class="hero-products">
 
-            <div class="hero-product">
-                <img
-                    src="images/endure.png"
-                    alt="TWP Endure"
-                >
+        <div class="hero-product">
+
+            <img src="images/endure.png">
+
+        </div>
+
+        <div class="hero-product main">
+
+            <img src="images/whey-21kg.png">
+
+        </div>
+
+        <div class="hero-product">
+
+            <img src="images/kickstart.png">
+
+        </div>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        SCROLL TO EXPLORE ↓
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     WHEY
+================================================== -->
+
+<section class="scroll-section product-scroll" id="whey">
+
+    <div class="sticky product-sticky">
+
+        <div class="product-content">
+
+
+            <div class="product-text">
+
+                <div class="product-number">
+                    01 / TWP WHEY
+                </div>
+
+                <h2>
+
+                    ALL THE<br>
+
+                    <span class="red">
+                        WHEY
+                    </span><br>
+
+                    UP.
+
+                </h2>
+
+                <p>
+                    Your everyday protein,
+                    built for training, recovery
+                    and everything in between.
+                </p>
+
+                <a href="#" class="product-button">
+                    SHOP WHEY →
+                </a>
+
             </div>
 
 
-            <!-- WHEY CENTRE -->
+            <div class="scroll-product">
 
-            <div class="hero-product whey">
                 <img
                     src="images/whey-21kg.png"
-                    alt="TWP Whey 2.1kg"
                 >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     KICK START
+================================================== -->
+
+<section class="scroll-section product-scroll" id="kickstart">
+
+    <div class="sticky product-sticky red-bg">
+
+        <div class="product-content">
+
+
+            <div class="product-text">
+
+                <div class="product-number">
+                    02 / KICK START AM
+                </div>
+
+                <h2>
+
+                    KICK<br>
+
+                    <span style="color:black;">
+                        START
+                    </span><br>
+
+                    AM.
+
+                </h2>
+
+                <p>
+                    Start your day switched on.
+                    Built for mornings when
+                    you need to get moving.
+                </p>
+
+                <a href="#" class="product-button">
+                    SHOP KICK START →
+                </a>
+
             </div>
 
 
-            <!-- KICK START RIGHT -->
+            <div class="scroll-product">
 
-            <div class="hero-product">
                 <img
                     src="images/kickstart.png"
-                    alt="TWP Kick Start"
                 >
+
             </div>
 
-        </div>
-
-        <div class="hero-label">
-            SCROLL TO EXPLORE ↓
         </div>
 
     </div>
@@ -825,221 +1128,150 @@ footer p {
 </section>
 
 
-<!-- =========================
-     2. ALL THE WHEY UP
-========================= -->
+<!-- ==================================================
+     ENDURE
+================================================== -->
 
-<section class="product-section whey-section" id="whey">
+<section class="scroll-section product-scroll" id="endure">
 
-    <div class="section-inner">
+    <div class="sticky product-sticky">
 
-        <div class="section-copy">
+        <div class="product-content">
 
-            <div class="section-number">
-                01 / TWP WHEY
+
+            <div class="scroll-product">
+
+                <img
+                    src="images/endure.png"
+                >
+
             </div>
 
-            <h2 class="section-title">
-                ALL THE<br>
-                <span>WHEY</span><br>
-                UP.
+
+            <div class="product-text right">
+
+                <div class="product-number">
+                    03 / ENDURE
+                </div>
+
+                <h2>
+
+                    GO<br>
+
+                    <span class="red">
+                        FURTHER.
+                    </span>
+
+                </h2>
+
+                <p>
+                    Built around your training.
+                    For the sessions where
+                    stopping isn't part of the plan.
+                </p>
+
+                <a href="#" class="product-button">
+                    SHOP ENDURE →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     LFT
+================================================== -->
+
+<section class="scroll-section product-scroll" id="lft">
+
+    <div class="sticky product-sticky white-bg">
+
+        <div class="product-content">
+
+
+            <div class="product-text">
+
+                <div class="product-number">
+                    04 / LFT
+                </div>
+
+                <h2>
+
+                    LFT<br>
+
+                    <span class="red">
+                        IS COMING.
+                    </span>
+
+                </h2>
+
+                <p>
+                    Something new is landing.
+                    Stay tuned for the next
+                    addition to TWP Nutrition.
+                </p>
+
+                <a href="#" class="product-button">
+                    FIND OUT MORE →
+                </a>
+
+            </div>
+
+
+            <div class="scroll-product">
+
+                <img
+                    src="images/lft.png"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     RAWS
+================================================== -->
+
+<section class="raws" id="raws">
+
+    <div class="sticky raws-sticky">
+
+        <div class="raws-heading">
+
+            <div class="product-number">
+                05 / TWP RAWS
+            </div>
+
+            <h2>
+
+                <span>RAWS</span><br>
+
+                RANGE
+
             </h2>
 
-            <p class="section-description">
-                Your everyday protein, built for training,
-                recovery and everything in between.
-                Smooth, simple and made to fit your routine.
-            </p>
-
-            <a href="#" class="shop-button">
-                SHOP WHEY →
-            </a>
-
         </div>
-
-
-        <div class="product-image">
-
-            <img
-                src="images/whey-21kg.png"
-                alt="TWP Whey 2.1kg"
-            >
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     3. KICK START AM
-========================= -->
-
-<section class="product-section red-section kickstart-section" id="kickstart">
-
-    <div class="section-inner">
-
-        <div class="section-copy">
-
-            <div class="section-number">
-                02 / KICK START
-            </div>
-
-            <h2 class="section-title">
-                KICK<br>
-                <span>START</span><br>
-                AM.
-            </h2>
-
-            <p class="section-description">
-                Start your day switched on.
-                Kick Start AM is designed for those
-                mornings when you need to get moving.
-            </p>
-
-            <a href="#" class="shop-button">
-                DISCOVER KICK START →
-            </a>
-
-        </div>
-
-
-        <div class="product-image">
-
-            <img
-                src="images/kickstart.png"
-                alt="TWP Kick Start AM"
-            >
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     4. ENDURE
-========================= -->
-
-<section class="product-section endure-section" id="endure">
-
-    <div class="section-inner">
-
-        <div class="product-image">
-
-            <img
-                src="images/endure.png"
-                alt="TWP Endure"
-            >
-
-        </div>
-
-
-        <div class="section-copy">
-
-            <div class="section-number">
-                03 / ENDURE
-            </div>
-
-            <h2 class="section-title">
-                GO<br>
-                <span>FURTHER.</span>
-            </h2>
-
-            <p class="section-description">
-                Built around your training.
-                Endure is made for the sessions
-                where stopping isn't part of the plan.
-            </p>
-
-            <a href="#" class="shop-button">
-                SHOP ENDURE →
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     5. LFT
-========================= -->
-
-<section class="product-section lft-section" id="lft">
-
-    <div class="section-inner">
-
-        <div class="section-copy">
-
-            <div class="section-number">
-                04 / LFT
-            </div>
-
-            <h2 class="section-title">
-                LFT<br>
-                <span>IS COMING.</span>
-            </h2>
-
-            <p class="section-description">
-                Something new is landing.
-                Stay tuned for the next addition
-                to the TWP Nutrition range.
-            </p>
-
-            <a href="#" class="shop-button">
-                FIND OUT MORE →
-            </a>
-
-        </div>
-
-
-        <div class="product-image">
-
-            <img
-                src="images/lft.png"
-                alt="TWP LFT"
-            >
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     6. RAWS RANGE
-========================= -->
-
-<section class="product-section raws-section" id="raws">
-
-    <div class="section-inner">
-
-        <div class="section-number">
-            05 / RAWS
-        </div>
-
-        <h2 class="section-title">
-            <span>RAWS</span><br>
-            RANGE
-        </h2>
 
 
         <div class="raws-grid">
 
+
             <div class="raw-card">
 
-                <img
-                    src="images/raw-1.jpg"
-                    alt="TWP Raws"
-                >
+                <img src="images/raw-1.jpg">
 
-                <div class="raw-card-overlay">
-                    <h3>RAW 01</h3>
+                <div class="raw-card-title">
+                    RAW 01
                 </div>
 
             </div>
@@ -1047,13 +1279,10 @@ footer p {
 
             <div class="raw-card">
 
-                <img
-                    src="images/raw-2.jpg"
-                    alt="TWP Raws"
-                >
+                <img src="images/raw-2.jpg">
 
-                <div class="raw-card-overlay">
-                    <h3>RAW 02</h3>
+                <div class="raw-card-title">
+                    RAW 02
                 </div>
 
             </div>
@@ -1061,16 +1290,14 @@ footer p {
 
             <div class="raw-card">
 
-                <img
-                    src="images/raw-3.jpg"
-                    alt="TWP Raws"
-                >
+                <img src="images/raw-3.jpg">
 
-                <div class="raw-card-overlay">
-                    <h3>RAW 03</h3>
+                <div class="raw-card-title">
+                    RAW 03
                 </div>
 
             </div>
+
 
         </div>
 
@@ -1079,41 +1306,42 @@ footer p {
 </section>
 
 
-<!-- =========================
-     7. FULL RANGE
-========================= -->
+<!-- ==================================================
+     FULL RANGE
+================================================== -->
 
-<section class="full-range" id="range">
+<section class="range" id="range">
 
-    <div class="full-range-header">
+    <div class="range-heading">
 
-        <div class="section-number">
-            06 / THE RANGE
+        <div class="product-number">
+            06 / FULL RANGE
         </div>
 
-        <h2 class="full-range-title">
+        <h2>
+
             FULL<br>
-            RANGE
+
+            <span>RANGE</span>
+
         </h2>
 
-        <p style="margin-top:25px;">
+        <p style="margin-top:25px;font-size:11px;font-weight:800;">
             SWIPE TO EXPLORE →
         </p>
 
     </div>
 
 
-    <div class="range-scroll">
+    <div class="range-track">
+
 
         <div class="range-card">
 
-            <img
-                src="images/whey-21kg.png"
-                alt="Whey"
-            >
+            <img src="images/whey-21kg.png">
 
-            <div class="range-card-title">
-                Whey
+            <div class="range-name">
+                WHEY
             </div>
 
         </div>
@@ -1121,13 +1349,10 @@ footer p {
 
         <div class="range-card">
 
-            <img
-                src="images/kickstart.png"
-                alt="Kick Start"
-            >
+            <img src="images/kickstart.png">
 
-            <div class="range-card-title">
-                Kick Start
+            <div class="range-name">
+                KICK START
             </div>
 
         </div>
@@ -1135,13 +1360,10 @@ footer p {
 
         <div class="range-card">
 
-            <img
-                src="images/endure.png"
-                alt="Endure"
-            >
+            <img src="images/endure.png">
 
-            <div class="range-card-title">
-                Endure
+            <div class="range-name">
+                ENDURE
             </div>
 
         </div>
@@ -1149,12 +1371,9 @@ footer p {
 
         <div class="range-card">
 
-            <img
-                src="images/lft.png"
-                alt="LFT"
-            >
+            <img src="images/lft.png">
 
-            <div class="range-card-title">
+            <div class="range-name">
                 LFT
             </div>
 
@@ -1163,40 +1382,38 @@ footer p {
 
         <div class="range-card">
 
-            <img
-                src="images/raw-1.jpg"
-                alt="Raws"
-            >
+            <img src="images/raw-1.jpg">
 
-            <div class="range-card-title">
-                Raws
+            <div class="range-name">
+                RAWS
             </div>
 
         </div>
 
-
-        <!-- COPY THESE CARDS FOR MORE PRODUCTS -->
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     8. SOCIAL MEDIA
-========================= -->
+<!-- ==================================================
+     SOCIAL
+================================================== -->
 
-<section class="social-section">
+<section class="social">
 
-    <div class="social-header">
+    <div class="social-heading">
 
-        <div class="section-number">
+        <div class="product-number">
             07 / SOCIAL
         </div>
 
-        <h2 class="social-title">
+        <h2>
+
             FOLLOW<br>
+
             <span>THE TWP.</span>
+
         </h2>
 
         <p style="margin-top:25px;">
@@ -1208,44 +1425,30 @@ footer p {
 
     <div class="social-grid">
 
+
         <div class="social-card">
-            <img
-                src="images/instagram-1.jpg"
-                alt="TWP Nutrition Instagram"
-            >
+            <img src="images/instagram-1.jpg">
         </div>
 
         <div class="social-card">
-            <img
-                src="images/instagram-2.jpg"
-                alt="TWP Nutrition Instagram"
-            >
+            <img src="images/instagram-2.jpg">
         </div>
 
         <div class="social-card">
-            <img
-                src="images/instagram-3.jpg"
-                alt="TWP Nutrition Instagram"
-            >
+            <img src="images/instagram-3.jpg">
         </div>
 
         <div class="social-card">
-            <img
-                src="images/instagram-4.jpg"
-                alt="TWP Nutrition Instagram"
-            >
+            <img src="images/instagram-4.jpg">
         </div>
+
 
     </div>
 
 
     <div class="social-button">
 
-        <a
-            href="https://instagram.com/"
-            target="_blank"
-            class="instagram-button"
-        >
+        <a href="#">
             FOLLOW US ON INSTAGRAM →
         </a>
 
@@ -1254,24 +1457,352 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      FOOTER
-========================= -->
+================================================== -->
 
 <footer>
 
-    <img
-        src="images/twp-logo.png"
-        alt="TWP Nutrition"
-    >
+    <img src="images/twp-logo.png">
 
     <p>
-        © 2026 TWP Nutrition. All Rights Reserved.
+        © 2026 TWP Nutrition
     </p>
 
 </footer>
 
 
+<script>
+
+/* ==================================================
+   SCROLL ANIMATIONS
+================================================== */
+
+const sections = document.querySelectorAll(
+    '.product-scroll'
+);
+
+const observer = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting) {
+
+                entry.target.classList.add('active');
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.35
+    }
+);
+
+sections.forEach(section => {
+
+    observer.observe(section);
+
+});
+
+
+/* ==================================================
+   PRODUCT SCROLL MOVEMENT
+================================================== */
+
+function updateProducts() {
+
+    const viewportHeight = window.innerHeight;
+
+    document
+        .querySelectorAll('.product-scroll')
+        .forEach(section => {
+
+            const sticky =
+                section.querySelector('.sticky');
+
+            const product =
+                section.querySelector('.scroll-product');
+
+            const text =
+                section.querySelector('.product-text');
+
+            if(!product || !text) return;
+
+
+            const rect =
+                section.getBoundingClientRect();
+
+            const progress =
+                Math.min(
+                    Math.max(
+                        -rect.top /
+                        (section.offsetHeight -
+                        viewportHeight),
+                        0
+                    ),
+                    1
+                );
+
+
+            /*
+               Product movement
+            */
+
+            const scale =
+                .65 +
+                (Math.sin(progress * Math.PI) * .4);
+
+
+            const moveY =
+                100 -
+                (progress * 200);
+
+
+            /*
+               Different movement
+               depending on section
+            */
+
+            if(section.id === 'kickstart') {
+
+                product.style.transform =
+                    `translate(-50%, calc(-50% + ${moveY}px))
+                     scale(${scale})`;
+
+            }
+
+            else if(section.id === 'endure') {
+
+                product.style.transform =
+                    `translate(-50%, calc(-50% + ${moveY}px))
+                     scale(${scale})`;
+
+            }
+
+            else if(section.id === 'lft') {
+
+                product.style.transform =
+                    `translate(-50%, calc(-50% + ${moveY}px))
+                     scale(${scale})`;
+
+            }
+
+            else {
+
+                product.style.transform =
+                    `translate(-50%, calc(-50% + ${moveY}px))
+                     scale(${scale})`;
+
+            }
+
+
+            /*
+               Text animation
+            */
+
+            let textProgress;
+
+            if(progress < .25) {
+
+                textProgress =
+                    progress / .25;
+
+            }
+
+            else if(progress > .75) {
+
+                textProgress =
+                    (1 - progress) / .25;
+
+            }
+
+            else {
+
+                textProgress = 1;
+
+            }
+
+
+            const opacity =
+                Math.min(
+                    Math.max(textProgress, 0),
+                    1
+                );
+
+
+            const textMove =
+                80 -
+                (opacity * 80);
+
+
+            text.style.opacity = opacity;
+
+            text.style.transform =
+                `translateY(calc(-50% + ${textMove}px))`;
+
+        });
+
+
+    /* ==================================================
+       RAWS ANIMATION
+    ================================================== */
+
+    const raws =
+        document.querySelector('.raws');
+
+    if(raws) {
+
+        const rect =
+            raws.getBoundingClientRect();
+
+        const progress =
+            Math.min(
+                Math.max(
+                    -rect.top /
+                    (raws.offsetHeight -
+                    viewportHeight),
+                    0
+                ),
+                1
+            );
+
+
+        const heading =
+            document.querySelector('.raws-heading');
+
+        const cards =
+            document.querySelectorAll('.raw-card');
+
+
+        if(heading) {
+
+            heading.style.opacity =
+                Math.min(progress * 3, 1);
+
+            heading.style.transform =
+                `translateY(${80 -
+                (progress * 80)}px)`;
+
+        }
+
+
+        cards.forEach((card, index) => {
+
+            const delay =
+                index * .15;
+
+            const cardProgress =
+                Math.min(
+                    Math.max(
+                        (progress - delay) * 3,
+                        0
+                    ),
+                    1
+                );
+
+
+            card.style.opacity =
+                cardProgress;
+
+            card.style.transform =
+                `translateY(${100 -
+                (cardProgress * 100)}px)`;
+
+        });
+
+    }
+
+}
+
+window.addEventListener(
+    'scroll',
+    updateProducts,
+    { passive: true }
+);
+
+window.addEventListener(
+    'resize',
+    updateProducts
+);
+
+updateProducts();
+
+
+/* ==================================================
+   DRAG FULL RANGE ON DESKTOP
+================================================== */
+
+const slider =
+    document.querySelector('.range-track');
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener(
+    'mousedown',
+    e => {
+
+        isDown = true;
+
+        slider.style.cursor = 'grabbing';
+
+        startX = e.pageX -
+            slider.offsetLeft;
+
+        scrollLeft =
+            slider.scrollLeft;
+
+    }
+);
+
+slider.addEventListener(
+    'mouseleave',
+    () => {
+
+        isDown = false;
+
+        slider.style.cursor = 'grab';
+
+    }
+);
+
+slider.addEventListener(
+    'mouseup',
+    () => {
+
+        isDown = false;
+
+        slider.style.cursor = 'grab';
+
+    }
+);
+
+slider.addEventListener(
+    'mousemove',
+    e => {
+
+        if(!isDown) return;
+
+        e.preventDefault();
+
+        const x =
+            e.pageX -
+            slider.offsetLeft;
+
+        const walk =
+            (x - startX) * 2;
+
+        slider.scrollLeft =
+            scrollLeft - walk;
+
+    }
+);
+
+</script>
+
 </body>
 </html>
-```
